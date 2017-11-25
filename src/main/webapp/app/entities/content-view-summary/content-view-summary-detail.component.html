@@ -1,0 +1,33 @@
+
+<div *ngIf="contentViewSummary">
+    <h2><span>Content View Summary</span> {{contentViewSummary.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>View Date</span></dt>
+        <dd>
+            <span>{{contentViewSummary.viewDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Content Type</span></dt>
+        <dd>
+            <span>{{contentViewSummary.contentType}}</span>
+        </dd>
+        <dt><span>Content Id</span></dt>
+        <dd>
+            <span>{{contentViewSummary.contentId}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'content-view-summary/'+ contentViewSummary.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

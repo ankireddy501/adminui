@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "caption",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "contentPath",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "subscriptionType",
+            "fieldType": "SubscriptionType",
+            "fieldValues": "PAID,FREE,PREMIUM"
+        },
+        {
+            "fieldName": "creationDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "updateDate",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20171125192338",
+    "entityTableName": "image_content",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

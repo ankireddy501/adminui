@@ -1,0 +1,45 @@
+
+<div *ngIf="subscriptionRequests">
+    <h2><span>Subscription Requests</span> {{subscriptionRequests.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{subscriptionRequests.status}}</span>
+        </dd>
+        <dt><span>Requested Date</span></dt>
+        <dd>
+            <span>{{subscriptionRequests.requestedDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Approval Date</span></dt>
+        <dd>
+            <span>{{subscriptionRequests.approvalDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Subscription Amount</span></dt>
+        <dd>
+            <span>{{subscriptionRequests.subscriptionAmount}}</span>
+        </dd>
+        <dt><span>Start Date</span></dt>
+        <dd>
+            <span>{{subscriptionRequests.startDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>End Date</span></dt>
+        <dd>
+            <span>{{subscriptionRequests.endDate | date:'mediumDate'}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'subscription-requests/'+ subscriptionRequests.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

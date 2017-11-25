@@ -1,0 +1,36 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "SubscriptionStatus",
+            "fieldValues": "PENDING,APPROVED,ACTIVE,RENEWAL_PENDING"
+        },
+        {
+            "fieldName": "requestedDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "approvalDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "subscriptionAmount",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "endDate",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20171125192341",
+    "entityTableName": "subscription_requests",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

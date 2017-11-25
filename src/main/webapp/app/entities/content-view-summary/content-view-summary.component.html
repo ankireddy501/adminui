@@ -1,0 +1,60 @@
+<div>
+    <h2>
+        <span>Content View Summaries</span>
+        <button class="btn btn-primary float-right jh-create-entity create-content-view-summary" [routerLink]="['/', { outlets: { popup: ['content-view-summary-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Content View Summary
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="contentViewSummaries">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>View Date</span></th>
+            <th><span>Content Type</span></th>
+            <th><span>Content Id</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let contentViewSummary of contentViewSummaries ;trackBy: trackId">
+                <td><a [routerLink]="['../content-view-summary', contentViewSummary.id ]">{{contentViewSummary.id}}</a></td>
+                <td>{{contentViewSummary.viewDate | date:'mediumDate'}}</td>
+                <td>{{contentViewSummary.contentType}}</td>
+                <td>{{contentViewSummary.contentId}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../content-view-summary', contentViewSummary.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'content-view-summary/'+ contentViewSummary.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'content-view-summary/'+ contentViewSummary.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

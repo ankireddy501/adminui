@@ -1,0 +1,24 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "viewDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "contentType",
+            "fieldType": "ContentType",
+            "fieldValues": "IMAGE,VIDEO"
+        },
+        {
+            "fieldName": "contentId",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171125192342",
+    "entityTableName": "content_view_summary",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no"
+}

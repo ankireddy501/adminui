@@ -43,6 +43,11 @@ public class CacheConfiguration {
             cm.createCache(com.musty.admin.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(com.musty.admin.domain.PersistentToken.class.getName(), jcacheConfiguration);
             cm.createCache(com.musty.admin.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
+            cm.createCache(com.musty.admin.domain.ImageContent.class.getName(), jcacheConfiguration);
+            cm.createCache(com.musty.admin.domain.MovieContent.class.getName(), jcacheConfiguration);
+            cm.createCache(com.musty.admin.domain.MovieContentDetails.class.getName(), jcacheConfiguration);
+            cm.createCache(com.musty.admin.domain.SubscriptionRequests.class.getName(), jcacheConfiguration);
+            cm.createCache(com.musty.admin.domain.ContentViewSummary.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
