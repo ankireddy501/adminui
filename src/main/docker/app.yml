@@ -1,0 +1,14 @@
+version: '2'
+services:
+    adminui-app:
+        image: adminui
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://adminui-postgresql:5432/adminui
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8081:8081
+    adminui-postgresql:
+        extends:
+            file: postgresql.yml
+            service: adminui-postgresql
