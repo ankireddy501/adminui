@@ -6,21 +6,21 @@ import { Observable } from 'rxjs/Rx';
 import { JhiDateUtils, JhiDataUtils, JhiEventManager } from 'ng-jhipster';
 import { AdminuiTestModule } from '../../../test.module';
 import { MockActivatedRoute } from '../../../helpers/mock-route.service';
-import { MovieContentDetailComponent } from '../../../../../../main/webapp/app/entities/movie-content/movie-content-detail.component';
-import { MovieContentService } from '../../../../../../main/webapp/app/entities/movie-content/movie-content.service';
-import { MovieContent } from '../../../../../../main/webapp/app/entities/movie-content/movie-content.model';
+import { MoviePosterDetailComponent } from '../../../../../../main/webapp/app/entities/movie-poster/movie-poster-detail.component';
+import { MoviePosterService } from '../../../../../../main/webapp/app/entities/movie-poster/movie-poster.service';
+import { MoviePoster } from '../../../../../../main/webapp/app/entities/movie-poster/movie-poster.model';
 
 describe('Component Tests', () => {
 
-    describe('MovieContent Management Detail Component', () => {
-        let comp: MovieContentDetailComponent;
-        let fixture: ComponentFixture<MovieContentDetailComponent>;
-        let service: MovieContentService;
+    describe('MoviePoster Management Detail Component', () => {
+        let comp: MoviePosterDetailComponent;
+        let fixture: ComponentFixture<MoviePosterDetailComponent>;
+        let service: MoviePosterService;
 
         beforeEach(async(() => {
             TestBed.configureTestingModule({
                 imports: [AdminuiTestModule],
-                declarations: [MovieContentDetailComponent],
+                declarations: [MoviePosterDetailComponent],
                 providers: [
                     JhiDateUtils,
                     JhiDataUtils,
@@ -29,31 +29,31 @@ describe('Component Tests', () => {
                         provide: ActivatedRoute,
                         useValue: new MockActivatedRoute({id: 123})
                     },
-                    MovieContentService,
+                    MoviePosterService,
                     JhiEventManager
                 ]
-            }).overrideTemplate(MovieContentDetailComponent, '')
+            }).overrideTemplate(MoviePosterDetailComponent, '')
             .compileComponents();
         }));
 
         beforeEach(() => {
-            fixture = TestBed.createComponent(MovieContentDetailComponent);
+            fixture = TestBed.createComponent(MoviePosterDetailComponent);
             comp = fixture.componentInstance;
-            service = fixture.debugElement.injector.get(MovieContentService);
+            service = fixture.debugElement.injector.get(MoviePosterService);
         });
 
         describe('OnInit', () => {
             it('Should call load all on init', () => {
             // GIVEN
 
-            spyOn(service, 'find').and.returnValue(Observable.of(new MovieContent(10)));
+            spyOn(service, 'find').and.returnValue(Observable.of(new MoviePoster(10)));
 
             // WHEN
             comp.ngOnInit();
 
             // THEN
             expect(service.find).toHaveBeenCalledWith(123);
-            expect(comp.movieContent).toEqual(jasmine.objectContaining({id: 10}));
+            expect(comp.moviePoster).toEqual(jasmine.objectContaining({id: 10}));
             });
         });
     });

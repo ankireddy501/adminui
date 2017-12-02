@@ -8,6 +8,12 @@
             "otherEntityField": "id",
             "ownerSide": true,
             "otherEntityRelationshipName": "movieContent"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "moviePoster",
+            "otherEntityName": "moviePoster",
+            "otherEntityRelationshipName": "movieContent"
         }
     ],
     "fields": [
@@ -26,7 +32,7 @@
         {
             "fieldName": "subscriptionType",
             "fieldType": "SubscriptionType",
-            "fieldValues": "PAID,FREE,PREMIUM"
+            "fieldValues": "PAID,FREE,PREMIUM,PREMIER"
         },
         {
             "fieldName": "creationTime",
@@ -41,5 +47,6 @@
     "entityTableName": "movie_content",
     "dto": "no",
     "pagination": "no",
-    "service": "no"
+    "service": "no",
+    "jpaMetamodelFiltering": false
 }

@@ -17,7 +17,7 @@
         {
             "fieldName": "subscriptionType",
             "fieldType": "SubscriptionType",
-            "fieldValues": "PAID,FREE,PREMIUM"
+            "fieldValues": "PAID,FREE,PREMIUM,PREMIER"
         },
         {
             "fieldName": "creationDate",
@@ -32,5 +32,6 @@
     "entityTableName": "image_content",
     "dto": "no",
     "pagination": "no",
-    "service": "no"
+    "service": "no",
+    "jpaMetamodelFiltering": false
 }

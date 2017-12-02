@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.musty.admin.domain.MovieContent;
 
 import com.musty.admin.repository.MovieContentRepository;
+import com.musty.admin.web.rest.errors.BadRequestAlertException;
 import com.musty.admin.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -46,7 +47,7 @@ public class MovieContentResource {
     public ResponseEntity<MovieContent> createMovieContent(@RequestBody MovieContent movieContent) throws URISyntaxException {
         log.debug("REST request to save MovieContent : {}", movieContent);
         if (movieContent.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new movieContent cannot already have an ID")).body(null);
+            throw new BadRequestAlertException("A new movieContent cannot already have an ID", ENTITY_NAME, "idexists");
         }
         MovieContent result = movieContentRepository.save(movieContent);
         return ResponseEntity.created(new URI("/api/movie-contents/" + result.getId()))

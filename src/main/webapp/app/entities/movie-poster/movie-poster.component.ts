@@ -1,33 +1,34 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiParseLinks, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
-import { MovieContent } from './movie-content.model';
-import { MovieContentService } from './movie-content.service';
+import { MoviePoster } from './movie-poster.model';
+import { MoviePosterService } from './movie-poster.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
 
 @Component({
-    selector: 'jhi-movie-content',
-    templateUrl: './movie-content.component.html'
+    selector: 'jhi-movie-poster',
+    templateUrl: './movie-poster.component.html'
 })
-export class MovieContentComponent implements OnInit, OnDestroy {
-movieContents: MovieContent[];
+export class MoviePosterComponent implements OnInit, OnDestroy {
+moviePosters: MoviePoster[];
     currentAccount: any;
     eventSubscriber: Subscription;
 
     constructor(
-        private movieContentService: MovieContentService,
+        private moviePosterService: MoviePosterService,
         private jhiAlertService: JhiAlertService,
+        private dataUtils: JhiDataUtils,
         private eventManager: JhiEventManager,
         private principal: Principal
     ) {
     }
 
     loadAll() {
-        this.movieContentService.query().subscribe(
+        this.moviePosterService.query().subscribe(
             (res: ResponseWrapper) => {
-                this.movieContents = res.json;
+                this.moviePosters = res.json;
             },
             (res: ResponseWrapper) => this.onError(res.json)
         );
@@ -37,18 +38,26 @@ movieContents: MovieContent[];
         this.principal.identity().then((account) => {
             this.currentAccount = account;
         });
-        this.registerChangeInMovieContents();
+        this.registerChangeInMoviePosters();
     }
 
     ngOnDestroy() {
         this.eventManager.destroy(this.eventSubscriber);
     }
 
-    trackId(index: number, item: MovieContent) {
+    trackId(index: number, item: MoviePoster) {
         return item.id;
     }
-    registerChangeInMovieContents() {
-        this.eventSubscriber = this.eventManager.subscribe('movieContentListModification', (response) => this.loadAll());
+
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
+    }
+
+    openFile(contentType, field) {
+        return this.dataUtils.openFile(contentType, field);
+    }
+    registerChangeInMoviePosters() {
+        this.eventSubscriber = this.eventManager.subscribe('moviePosterListModification', (response) => this.loadAll());
     }
 
     private onError(error) {

@@ -8,16 +8,16 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import com.musty.admin.domain.enumeration.SubscriptionType;
+import com.musty.admin.domain.enumeration.ImageType;
 
 
 /**
- * A ImageContent.
+ * A MoviePoster.
  */
 @Entity
-@Table(name = "image_content")
+@Table(name = "movie_poster")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class ImageContent implements Serializable {
+public class MoviePoster implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,18 +32,25 @@ public class ImageContent implements Serializable {
     @Column(name = "caption")
     private Boolean caption;
 
-    @Column(name = "content_path")
-    private String contentPath;
+    @Lob
+    @Column(name = "content")
+    private byte[] content;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "subscription_type")
-    private SubscriptionType subscriptionType;
+    @Column(name = "content_content_type")
+    private String contentContentType;
 
     @Column(name = "creation_date")
     private LocalDate creationDate;
 
     @Column(name = "update_date")
     private LocalDate updateDate;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "poster_size")
+    private ImageType posterSize;
+
+    @ManyToOne
+    private MovieContent movieContent;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -58,7 +65,7 @@ public class ImageContent implements Serializable {
         return name;
     }
 
-    public ImageContent name(String name) {
+    public MoviePoster name(String name) {
         this.name = name;
         return this;
     }
@@ -71,7 +78,7 @@ public class ImageContent implements Serializable {
         return caption;
     }
 
-    public ImageContent caption(Boolean caption) {
+    public MoviePoster caption(Boolean caption) {
         this.caption = caption;
         return this;
     }
@@ -80,37 +87,37 @@ public class ImageContent implements Serializable {
         this.caption = caption;
     }
 
-    public String getContentPath() {
-        return contentPath;
+    public byte[] getContent() {
+        return content;
     }
 
-    public ImageContent contentPath(String contentPath) {
-        this.contentPath = contentPath;
+    public MoviePoster content(byte[] content) {
+        this.content = content;
         return this;
     }
 
-    public void setContentPath(String contentPath) {
-        this.contentPath = contentPath;
+    public void setContent(byte[] content) {
+        this.content = content;
     }
 
-    public SubscriptionType getSubscriptionType() {
-        return subscriptionType;
+    public String getContentContentType() {
+        return contentContentType;
     }
 
-    public ImageContent subscriptionType(SubscriptionType subscriptionType) {
-        this.subscriptionType = subscriptionType;
+    public MoviePoster contentContentType(String contentContentType) {
+        this.contentContentType = contentContentType;
         return this;
     }
 
-    public void setSubscriptionType(SubscriptionType subscriptionType) {
-        this.subscriptionType = subscriptionType;
+    public void setContentContentType(String contentContentType) {
+        this.contentContentType = contentContentType;
     }
 
     public LocalDate getCreationDate() {
         return creationDate;
     }
 
-    public ImageContent creationDate(LocalDate creationDate) {
+    public MoviePoster creationDate(LocalDate creationDate) {
         this.creationDate = creationDate;
         return this;
     }
@@ -123,13 +130,39 @@ public class ImageContent implements Serializable {
         return updateDate;
     }
 
-    public ImageContent updateDate(LocalDate updateDate) {
+    public MoviePoster updateDate(LocalDate updateDate) {
         this.updateDate = updateDate;
         return this;
     }
 
     public void setUpdateDate(LocalDate updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public ImageType getPosterSize() {
+        return posterSize;
+    }
+
+    public MoviePoster posterSize(ImageType posterSize) {
+        this.posterSize = posterSize;
+        return this;
+    }
+
+    public void setPosterSize(ImageType posterSize) {
+        this.posterSize = posterSize;
+    }
+
+    public MovieContent getMovieContent() {
+        return movieContent;
+    }
+
+    public MoviePoster movieContent(MovieContent movieContent) {
+        this.movieContent = movieContent;
+        return this;
+    }
+
+    public void setMovieContent(MovieContent movieContent) {
+        this.movieContent = movieContent;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -141,11 +174,11 @@ public class ImageContent implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ImageContent imageContent = (ImageContent) o;
-        if (imageContent.getId() == null || getId() == null) {
+        MoviePoster moviePoster = (MoviePoster) o;
+        if (moviePoster.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), imageContent.getId());
+        return Objects.equals(getId(), moviePoster.getId());
     }
 
     @Override
@@ -155,14 +188,15 @@ public class ImageContent implements Serializable {
 
     @Override
     public String toString() {
-        return "ImageContent{" +
+        return "MoviePoster{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", caption='" + isCaption() + "'" +
-            ", contentPath='" + getContentPath() + "'" +
-            ", subscriptionType='" + getSubscriptionType() + "'" +
+            ", content='" + getContent() + "'" +
+            ", contentContentType='" + getContentContentType() + "'" +
             ", creationDate='" + getCreationDate() + "'" +
             ", updateDate='" + getUpdateDate() + "'" +
+            ", posterSize='" + getPosterSize() + "'" +
             "}";
     }
 }

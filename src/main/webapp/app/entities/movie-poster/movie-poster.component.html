@@ -1,0 +1,77 @@
+<div>
+    <h2>
+        <span>Movie Posters</span>
+        <button class="btn btn-primary float-right jh-create-entity create-movie-poster" [routerLink]="['/', { outlets: { popup: ['movie-poster-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Movie Poster
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="moviePosters">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Caption</span></th>
+            <th><span>Content</span></th>
+            <th><span>Creation Date</span></th>
+            <th><span>Update Date</span></th>
+            <th><span>Poster Size</span></th>
+            <th><span>Movie Content</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let moviePoster of moviePosters ;trackBy: trackId">
+                <td><a [routerLink]="['../movie-poster', moviePoster.id ]">{{moviePoster.id}}</a></td>
+                <td>{{moviePoster.name}}</td>
+                <td>{{moviePoster.caption}}</td>
+                <td>
+                    <a *ngIf="moviePoster.content" (click)="openFile(moviePoster.contentContentType, moviePoster.content)">
+                        <img [src]="'data:' + moviePoster.contentContentType + ';base64,' + moviePoster.content" style="max-height: 30px;" alt="moviePoster image"/>
+                    </a>
+                    <span *ngIf="moviePoster.content">{{moviePoster.contentContentType}}, {{byteSize(moviePoster.content)}}</span>
+                </td>
+                <td>{{moviePoster.creationDate | date:'mediumDate'}}</td>
+                <td>{{moviePoster.updateDate | date:'mediumDate'}}</td>
+                <td>{{moviePoster.posterSize}}</td>
+                <td>
+                    <div *ngIf="moviePoster.movieContent">
+                        <a [routerLink]="['../movie-content', moviePoster.movieContent?.id ]" >{{moviePoster.movieContent?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../movie-poster', moviePoster.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'movie-poster/'+ moviePoster.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'movie-poster/'+ moviePoster.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

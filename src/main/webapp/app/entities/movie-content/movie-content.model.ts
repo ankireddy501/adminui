@@ -3,7 +3,8 @@ import { BaseEntity } from './../../shared';
 export const enum SubscriptionType {
     'PAID',
     'FREE',
-    'PREMIUM'
+    'PREMIUM',
+    'PREMIER'
 }
 
 export class MovieContent implements BaseEntity {
@@ -16,6 +17,7 @@ export class MovieContent implements BaseEntity {
         public creationTime?: any,
         public updateDate?: any,
         public details?: BaseEntity,
+        public moviePosters?: BaseEntity[],
     ) {
     }
 }

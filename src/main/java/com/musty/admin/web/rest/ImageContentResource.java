@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.musty.admin.domain.ImageContent;
 
 import com.musty.admin.repository.ImageContentRepository;
+import com.musty.admin.web.rest.errors.BadRequestAlertException;
 import com.musty.admin.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -46,7 +47,7 @@ public class ImageContentResource {
     public ResponseEntity<ImageContent> createImageContent(@RequestBody ImageContent imageContent) throws URISyntaxException {
         log.debug("REST request to save ImageContent : {}", imageContent);
         if (imageContent.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new imageContent cannot already have an ID")).body(null);
+            throw new BadRequestAlertException("A new imageContent cannot already have an ID", ENTITY_NAME, "idexists");
         }
         ImageContent result = imageContentRepository.save(imageContent);
         return ResponseEntity.created(new URI("/api/image-contents/" + result.getId()))

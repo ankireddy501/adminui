@@ -10,7 +10,9 @@
     <include file="config/liquibase/changelog/20171125192340_added_entity_MovieContentDetails.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20171125192341_added_entity_SubscriptionRequests.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20171125192342_added_entity_ContentViewSummary.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171202072415_added_entity_MoviePoster.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20171125192339_added_entity_constraints_MovieContent.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171202072415_added_entity_constraints_MoviePoster.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

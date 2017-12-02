@@ -1,12 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Rx';
-import { JhiEventManager, JhiParseLinks, JhiPaginationUtil, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { ImageContent } from './image-content.model';
 import { ImageContentService } from './image-content.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
-import { PaginationConfig } from '../../blocks/config/uib-pagination.config';
 
 @Component({
     selector: 'jhi-image-content',
@@ -19,7 +18,7 @@ imageContents: ImageContent[];
 
     constructor(
         private imageContentService: ImageContentService,
-        private alertService: JhiAlertService,
+        private jhiAlertService: JhiAlertService,
         private eventManager: JhiEventManager,
         private principal: Principal
     ) {
@@ -53,6 +52,6 @@ imageContents: ImageContent[];
     }
 
     private onError(error) {
-        this.alertService.error(error.message, null, null);
+        this.jhiAlertService.error(error.message, null, null);
     }
 }

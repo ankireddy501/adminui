@@ -1,0 +1,86 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myMoviePosterLabel">Create or edit a Movie Poster</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!moviePoster.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="moviePoster.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="moviePoster.name" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_caption">Caption</label>
+            <input type="checkbox" class="form-control" name="caption" id="field_caption"
+                [(ngModel)]="moviePoster.caption" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_content">Content</label>
+            <div>
+                <img [src]="'data:' + moviePoster.contentContentType + ';base64,' + moviePoster.content" style="max-height: 100px;" *ngIf="moviePoster.content" alt="moviePoster image"/>
+                <div *ngIf="moviePoster.content" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{moviePoster.contentContentType}}, {{byteSize(moviePoster.content)}}</span>
+                    <button type="button" (click)="clearInputImage('content', 'contentContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_content" (change)="setFileData($event, moviePoster, 'content', true)" accept="image/*"/>
+            </div>
+            <input type="hidden" class="form-control" name="content" id="field_content"
+                [(ngModel)]="moviePoster.content" />
+            <input type="hidden" class="form-control" name="contentContentType" id="field_contentContentType"
+                [(ngModel)]="moviePoster.contentContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_creationDate">Creation Date</label>
+            <div class="input-group">
+                <input id="field_creationDate" type="text" class="form-control" name="creationDate" ngbDatepicker  #creationDateDp="ngbDatepicker" [(ngModel)]="moviePoster.creationDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="creationDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_updateDate">Update Date</label>
+            <div class="input-group">
+                <input id="field_updateDate" type="text" class="form-control" name="updateDate" ngbDatepicker  #updateDateDp="ngbDatepicker" [(ngModel)]="moviePoster.updateDate"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-secondary" (click)="updateDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_posterSize">Poster Size</label>
+            <select class="form-control" name="posterSize" [(ngModel)]="moviePoster.posterSize" id="field_posterSize" >
+                <option value="THUMBNAIL">THUMBNAIL</option>
+                <option value="RAW">RAW</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_movieContent">Movie Content</label>
+            <select class="form-control" id="field_movieContent" name="movieContent" [(ngModel)]="moviePoster.movieContent" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="movieContentOption.id === moviePoster.movieContent?.id ? moviePoster.movieContent : movieContentOption" *ngFor="let movieContentOption of moviecontents; trackBy: trackMovieContentById">{{movieContentOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

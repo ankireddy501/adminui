@@ -5,33 +5,33 @@ import { SERVER_API_URL } from '../../app.constants';
 
 import { JhiDateUtils } from 'ng-jhipster';
 
-import { ImageContent } from './image-content.model';
+import { MoviePoster } from './movie-poster.model';
 import { ResponseWrapper, createRequestOption } from '../../shared';
 
 @Injectable()
-export class ImageContentService {
+export class MoviePosterService {
 
-    private resourceUrl = SERVER_API_URL + 'api/image-contents';
+    private resourceUrl = SERVER_API_URL + 'api/movie-posters';
 
     constructor(private http: Http, private dateUtils: JhiDateUtils) { }
 
-    create(imageContent: ImageContent): Observable<ImageContent> {
-        const copy = this.convert(imageContent);
+    create(moviePoster: MoviePoster): Observable<MoviePoster> {
+        const copy = this.convert(moviePoster);
         return this.http.post(this.resourceUrl, copy).map((res: Response) => {
             const jsonResponse = res.json();
             return this.convertItemFromServer(jsonResponse);
         });
     }
 
-    update(imageContent: ImageContent): Observable<ImageContent> {
-        const copy = this.convert(imageContent);
+    update(moviePoster: MoviePoster): Observable<MoviePoster> {
+        const copy = this.convert(moviePoster);
         return this.http.put(this.resourceUrl, copy).map((res: Response) => {
             const jsonResponse = res.json();
             return this.convertItemFromServer(jsonResponse);
         });
     }
 
-    find(id: number): Observable<ImageContent> {
+    find(id: number): Observable<MoviePoster> {
         return this.http.get(`${this.resourceUrl}/${id}`).map((res: Response) => {
             const jsonResponse = res.json();
             return this.convertItemFromServer(jsonResponse);
@@ -58,10 +58,10 @@ export class ImageContentService {
     }
 
     /**
-     * Convert a returned JSON object to ImageContent.
+     * Convert a returned JSON object to MoviePoster.
      */
-    private convertItemFromServer(json: any): ImageContent {
-        const entity: ImageContent = Object.assign(new ImageContent(), json);
+    private convertItemFromServer(json: any): MoviePoster {
+        const entity: MoviePoster = Object.assign(new MoviePoster(), json);
         entity.creationDate = this.dateUtils
             .convertLocalDateFromServer(json.creationDate);
         entity.updateDate = this.dateUtils
@@ -70,14 +70,14 @@ export class ImageContentService {
     }
 
     /**
-     * Convert a ImageContent to a JSON which can be sent to the server.
+     * Convert a MoviePoster to a JSON which can be sent to the server.
      */
-    private convert(imageContent: ImageContent): ImageContent {
-        const copy: ImageContent = Object.assign({}, imageContent);
+    private convert(moviePoster: MoviePoster): MoviePoster {
+        const copy: MoviePoster = Object.assign({}, moviePoster);
         copy.creationDate = this.dateUtils
-            .convertLocalDateToServer(imageContent.creationDate);
+            .convertLocalDateToServer(moviePoster.creationDate);
         copy.updateDate = this.dateUtils
-            .convertLocalDateToServer(imageContent.updateDate);
+            .convertLocalDateToServer(moviePoster.updateDate);
         return copy;
     }
 }

@@ -1,21 +1,21 @@
 import { BaseEntity } from './../../shared';
 
-export const enum SubscriptionType {
-    'PAID',
-    'FREE',
-    'PREMIUM',
-    'PREMIER'
+export const enum ImageType {
+    'THUMBNAIL',
+    'RAW'
 }
 
-export class ImageContent implements BaseEntity {
+export class MoviePoster implements BaseEntity {
     constructor(
         public id?: number,
         public name?: string,
         public caption?: boolean,
-        public contentPath?: string,
-        public subscriptionType?: SubscriptionType,
+        public contentContentType?: string,
+        public content?: any,
         public creationDate?: any,
         public updateDate?: any,
+        public posterSize?: ImageType,
+        public movieContent?: BaseEntity,
     ) {
         this.caption = false;
     }

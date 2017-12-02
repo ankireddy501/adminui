@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
-import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { ImageContent } from './image-content.model';
@@ -23,7 +23,7 @@ export class ImageContentDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: JhiAlertService,
+        private jhiAlertService: JhiAlertService,
         private imageContentService: ImageContentService,
         private eventManager: JhiEventManager
     ) {
@@ -64,7 +64,7 @@ export class ImageContentDialogComponent implements OnInit {
     }
 
     private onError(error: any) {
-        this.alertService.error(error.message, null, null);
+        this.jhiAlertService.error(error.message, null, null);
     }
 }
 

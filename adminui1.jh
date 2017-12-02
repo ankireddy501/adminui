@@ -1,0 +1,85 @@
+
+
+enum ContentType{
+	IMAGE,VIDEO
+}
+enum SubscriptionType{
+	PAID, FREE, PREMIUM, PREMIER
+}
+
+enum LifeTime{
+        UNLIMITED
+}
+
+enum Validity{
+	UNLIMITED
+}
+
+enum SubscriptionStatus{
+	PENDING,
+    APPROVED,
+    ACTIVE,
+    RENEWAL_PENDING
+}
+
+entity ImageContent{
+    name String,
+    caption Boolean,
+    contentPath String,
+    subscriptionType SubscriptionType,
+    creationDate LocalDate,
+    updateDate LocalDate
+}
+
+entity MovieContent{
+    id String,
+    name String,
+    description String,
+    contentPath String,
+    subscriptionType SubscriptionType,
+    creationTime LocalDate,
+    updateDate LocalDate
+}
+
+entity MoviePoster{
+    name String,
+    caption Boolean,
+    content ImageBlob,
+    creationDate LocalDate,
+    updateDate LocalDate,
+    posterSize ImageType
+}
+
+relationship OneToMany{
+	MovieContent{moviePoster} to MoviePoster{movieContent}
+}
+
+enum ImageType{
+	THUMBNAIL, RAW
+}
+
+entity MovieContentDetails{
+    id String,
+    director String,
+    duration Integer,
+    releaseDate LocalDate
+}
+
+entity SubscriptionRequests{
+	status SubscriptionStatus
+    requestedDate LocalDate,
+    approvalDate LocalDate,
+    subscriptionAmount Integer,
+    startDate LocalDate,
+    endDate LocalDate
+}
+
+entity ContentViewSummary{
+	viewDate LocalDate,
+    contentType ContentType,
+    contentId String
+}
+
+relationship OneToOne{
+	MovieContent{details} to MovieContentDetails{movieContent}
+}

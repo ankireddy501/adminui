@@ -1,0 +1,45 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "movieContent",
+            "otherEntityName": "movieContent",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "caption",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "content",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "creationDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "updateDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "posterSize",
+            "fieldType": "ImageType",
+            "fieldValues": "THUMBNAIL,RAW"
+        }
+    ],
+    "changelogDate": "20171202072415",
+    "entityTableName": "movie_poster",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

@@ -1,14 +1,18 @@
 package com.musty.admin.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 import com.musty.admin.domain.enumeration.SubscriptionType;
+
 
 /**
  * A MovieContent.
@@ -48,7 +52,12 @@ public class MovieContent implements Serializable {
     @JoinColumn(unique = true)
     private MovieContentDetails details;
 
-    // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
+    @OneToMany(mappedBy = "movieContent")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<MoviePoster> moviePosters = new HashSet<>();
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -147,7 +156,32 @@ public class MovieContent implements Serializable {
     public void setDetails(MovieContentDetails movieContentDetails) {
         this.details = movieContentDetails;
     }
-    // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
+
+    public Set<MoviePoster> getMoviePosters() {
+        return moviePosters;
+    }
+
+    public MovieContent moviePosters(Set<MoviePoster> moviePosters) {
+        this.moviePosters = moviePosters;
+        return this;
+    }
+
+    public MovieContent addMoviePoster(MoviePoster moviePoster) {
+        this.moviePosters.add(moviePoster);
+        moviePoster.setMovieContent(this);
+        return this;
+    }
+
+    public MovieContent removeMoviePoster(MoviePoster moviePoster) {
+        this.moviePosters.remove(moviePoster);
+        moviePoster.setMovieContent(null);
+        return this;
+    }
+
+    public void setMoviePosters(Set<MoviePoster> moviePosters) {
+        this.moviePosters = moviePosters;
+    }
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
