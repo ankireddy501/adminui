@@ -11,6 +11,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
 
+import com.musty.admin.domain.enumeration.Generes;
+
+import com.musty.admin.domain.enumeration.Language;
+
 import com.musty.admin.domain.enumeration.SubscriptionType;
 
 
@@ -37,6 +41,14 @@ public class MovieContent implements Serializable {
 
     @Column(name = "content_path")
     private String contentPath;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "generes")
+    private Generes generes;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "language")
+    private Language language;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "subscription_type")
@@ -103,6 +115,32 @@ public class MovieContent implements Serializable {
 
     public void setContentPath(String contentPath) {
         this.contentPath = contentPath;
+    }
+
+    public Generes getGeneres() {
+        return generes;
+    }
+
+    public MovieContent generes(Generes generes) {
+        this.generes = generes;
+        return this;
+    }
+
+    public void setGeneres(Generes generes) {
+        this.generes = generes;
+    }
+
+    public Language getLanguage() {
+        return language;
+    }
+
+    public MovieContent language(Language language) {
+        this.language = language;
+        return this;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
     }
 
     public SubscriptionType getSubscriptionType() {
@@ -210,6 +248,8 @@ public class MovieContent implements Serializable {
             ", name='" + getName() + "'" +
             ", description='" + getDescription() + "'" +
             ", contentPath='" + getContentPath() + "'" +
+            ", generes='" + getGeneres() + "'" +
+            ", language='" + getLanguage() + "'" +
             ", subscriptionType='" + getSubscriptionType() + "'" +
             ", creationTime='" + getCreationTime() + "'" +
             ", updateDate='" + getUpdateDate() + "'" +

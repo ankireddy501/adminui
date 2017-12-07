@@ -30,6 +30,16 @@
             "fieldType": "String"
         },
         {
+            "fieldName": "generes",
+            "fieldType": "Generes",
+            "fieldValues": "ABSURDIST,ACTION,ADVENTURE,COMEDY,CRIME,DRAMA,FANTASY,HISTORICAL,HORROR,MYSTERY,PARANOID,PHILOSOPHICAL,POLITICAL,ROMANCE,SAGA,SATIRE,SCIENCE_FICTION,SOCIAL,SPECULATIVE,THRILLER,URBAN,WESTERN,SLICE_OF_LIFE"
+        },
+        {
+            "fieldName": "language",
+            "fieldType": "Language",
+            "fieldValues": "ARABIC,BENGALI,BULGARIAN,CHINESE,CROATIAN,DUTCH,ENGLISH,FINNISH,FRENCH,GERMAN,GREEK,HEBREW,HINDI,HUNGARIAN,ICELANDIC,ITALIAN,JAPANESE,KANNADA,KOREAN,MALAYALAM,MARATHI,NORWEGIAN,PERSIAN,POLISH,PORTUGUESE,PUNJABI,ROMANIAN,RUSSIAN,SPANISH,SWEDISH,TAMIL,TELUGU,TURKISH,UKRAINIAN"
+        },
+        {
             "fieldName": "subscriptionType",
             "fieldType": "SubscriptionType",
             "fieldValues": "PAID,FREE,PREMIUM,PREMIER"

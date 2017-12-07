@@ -1,4 +1,4 @@
-import { BaseEntity } from './../../shared';
+import { BaseEntity, User } from './../../shared';
 
 export const enum SubscriptionStatus {
     'PENDING',
@@ -16,6 +16,7 @@ export class SubscriptionRequests implements BaseEntity {
         public subscriptionAmount?: number,
         public startDate?: any,
         public endDate?: any,
+        public user?: User,
     ) {
     }
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<appender name="file" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${catalina.base}/logs/log.txt" />
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="5MB" />
+		<param name="MaxBackupIndex" value="20" />
+		<layout class="com.aris.log4j.ArisPatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601}|%-5p|%i|%T|%s|%R|%t|%c{1} - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="errorFile" class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="${catalina.base}/logs/error.log.txt" />
+		<param name="Append" value="true" />
+		<param name="Threshold" value="error" />
+		<param name="MaxFileSize" value="5MB" />
+		<param name="MaxBackupIndex" value="20" />
+		<layout class="com.aris.log4j.ArisPatternLayout">
+			<param name="ConversionPattern" value="%d{ISO8601}|%-5p|%i|%T|%s|%R|%t|%c{1} - %m%n" />
+		</layout>
+	</appender>
+	
+	<!-- aop perf timer log appender -->	
+    <appender name="performanceLog" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${catalina.base}/logs/performance.log.txt" />
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="5MB" />
+        <param name="MaxBackupIndex" value="10" />
+        <layout class="com.aris.log4j.ArisPatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601}|%-5p|%i|%T|%s|%R|%t|%c{1} - %m%n" />
+        </layout>
+    </appender>
+    
+    <appender name="ecp" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="${catalina.base}/logs/ecp.log.txt" />
+        <param name="Append" value="true" />
+        <param name="MaxFileSize" value="5MB" />
+        <param name="MaxBackupIndex" value="20" />
+        <layout class="com.aris.log4j.ArisPatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601}|%-5p|%i|%T|%s|%R|%t|%c{1} - %m%n" />
+        </layout>
+    </appender>
+
+    <logger name="com.softwareag.ecp">
+        <level value="debug" />
+		<appender-ref ref="ecp"/>
+    </logger>
+
+    <logger name="org.eurekastreams">
+		<level value="debug" />
+        <appender-ref ref="ecp"/>
+    </logger>
+	
+    <!-- aop perf timer log -->
+    <logger name="perf.timer" additivity="false">
+        <level value="debug" />
+        <appender-ref ref="performanceLog" />
+    </logger>    
+
+	<root>
+		<priority value="debug" />
+		<appender-ref ref="file" />
+		<appender-ref ref="errorFile" />
+	</root>
+
+</log4j:configuration>

@@ -26,12 +26,15 @@ spring:
         serialization.indent_output: true
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:postgresql://localhost:5432/adminui
-        username: postgres
-        password: manager
+        url: jdbc:h2:file:./target/h2db/db/adminui;DB_CLOSE_DELAY=-1
+        username: Optimizer
+        password:
+    h2:
+        console:
+            enabled: false
     jpa:
-        database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
-        database: POSTGRESQL
+        database-platform: io.github.jhipster.domain.util.FixedH2Dialect
+        database: H2
         show-sql: true
         properties:
             hibernate.id.new_generator_mappings: true
@@ -42,7 +45,7 @@ spring:
     mail:
         host: smtp.gmail.com
         port: 587
-        username: ramaproject1234@gmail.com  
+        username: ramaproject1234@gmail.com
         password: ramaadmin@1234
         protocol: smtp
         tls: true

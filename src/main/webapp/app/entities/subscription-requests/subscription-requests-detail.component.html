@@ -28,6 +28,10 @@
         <dd>
             <span>{{subscriptionRequests.endDate | date:'mediumDate'}}</span>
         </dd>
+        <dt><span>User</span></dt>
+        <dd>
+            {{subscriptionRequests.user?.login}}
+        </dd>
     </dl>
 
     <button type="submit"

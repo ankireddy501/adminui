@@ -10,6 +10,7 @@ import java.util.Objects;
 
 import com.musty.admin.domain.enumeration.SubscriptionStatus;
 
+
 /**
  * A SubscriptionRequests.
  */
@@ -44,7 +45,10 @@ public class SubscriptionRequests implements Serializable {
     @Column(name = "end_date")
     private LocalDate endDate;
 
-    // jhipster-needle-entity-add-field - Jhipster will add fields here, do not remove
+    @ManyToOne
+    private User user;
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -130,7 +134,20 @@ public class SubscriptionRequests implements Serializable {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
-    // jhipster-needle-entity-add-getters-setters - Jhipster will add getters and setters here, do not remove
+
+    public User getUser() {
+        return user;
+    }
+
+    public SubscriptionRequests user(User user) {
+        this.user = user;
+        return this;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
@@ -159,7 +176,7 @@ public class SubscriptionRequests implements Serializable {
             ", status='" + getStatus() + "'" +
             ", requestedDate='" + getRequestedDate() + "'" +
             ", approvalDate='" + getApprovalDate() + "'" +
-            ", subscriptionAmount='" + getSubscriptionAmount() + "'" +
+            ", subscriptionAmount=" + getSubscriptionAmount() +
             ", startDate='" + getStartDate() + "'" +
             ", endDate='" + getEndDate() + "'" +
             "}";

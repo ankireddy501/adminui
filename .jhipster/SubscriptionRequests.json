@@ -1,6 +1,15 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "user",
+            "otherEntityName": "user",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "login",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "subscriptionRequests"
+        }
+    ],
     "fields": [
         {
             "fieldName": "status",
@@ -29,8 +38,9 @@
         }
     ],
     "changelogDate": "20171125192341",
-    "entityTableName": "subscription_requests",
     "dto": "no",
-    "pagination": "no",
-    "service": "no"
+    "service": "no",
+    "entityTableName": "subscription_requests",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
 }

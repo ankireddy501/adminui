@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { AdminuiSharedModule } from '../../shared';
+import { AdminuiAdminModule } from '../../admin/admin.module';
 import {
     SubscriptionRequestsService,
     SubscriptionRequestsPopupService,
@@ -23,7 +24,8 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         AdminuiSharedModule,
-        RouterModule.forRoot(ENTITY_STATES, { useHash: true })
+        AdminuiAdminModule,
+        RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [
         SubscriptionRequestsComponent,

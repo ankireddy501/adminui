@@ -28,6 +28,73 @@
                 [(ngModel)]="movieContent.contentPath" />
         </div>
         <div class="form-group">
+            <label class="form-control-label" for="field_generes">Generes</label>
+            <select class="form-control" name="generes" [(ngModel)]="movieContent.generes" id="field_generes" >
+                <option value="ABSURDIST">ABSURDIST</option>
+                <option value="ACTION">ACTION</option>
+                <option value="ADVENTURE">ADVENTURE</option>
+                <option value="COMEDY">COMEDY</option>
+                <option value="CRIME">CRIME</option>
+                <option value="DRAMA">DRAMA</option>
+                <option value="FANTASY">FANTASY</option>
+                <option value="HISTORICAL">HISTORICAL</option>
+                <option value="HORROR">HORROR</option>
+                <option value="MYSTERY">MYSTERY</option>
+                <option value="PARANOID">PARANOID</option>
+                <option value="PHILOSOPHICAL">PHILOSOPHICAL</option>
+                <option value="POLITICAL">POLITICAL</option>
+                <option value="ROMANCE">ROMANCE</option>
+                <option value="SAGA">SAGA</option>
+                <option value="SATIRE">SATIRE</option>
+                <option value="SCIENCE_FICTION">SCIENCE_FICTION</option>
+                <option value="SOCIAL">SOCIAL</option>
+                <option value="SPECULATIVE">SPECULATIVE</option>
+                <option value="THRILLER">THRILLER</option>
+                <option value="URBAN">URBAN</option>
+                <option value="WESTERN">WESTERN</option>
+                <option value="SLICE_OF_LIFE">SLICE_OF_LIFE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_language">Language</label>
+            <select class="form-control" name="language" [(ngModel)]="movieContent.language" id="field_language" >
+                <option value="ARABIC">ARABIC</option>
+                <option value="BENGALI">BENGALI</option>
+                <option value="BULGARIAN">BULGARIAN</option>
+                <option value="CHINESE">CHINESE</option>
+                <option value="CROATIAN">CROATIAN</option>
+                <option value="DUTCH">DUTCH</option>
+                <option value="ENGLISH">ENGLISH</option>
+                <option value="FINNISH">FINNISH</option>
+                <option value="FRENCH">FRENCH</option>
+                <option value="GERMAN">GERMAN</option>
+                <option value="GREEK">GREEK</option>
+                <option value="HEBREW">HEBREW</option>
+                <option value="HINDI">HINDI</option>
+                <option value="HUNGARIAN">HUNGARIAN</option>
+                <option value="ICELANDIC">ICELANDIC</option>
+                <option value="ITALIAN">ITALIAN</option>
+                <option value="JAPANESE">JAPANESE</option>
+                <option value="KANNADA">KANNADA</option>
+                <option value="KOREAN">KOREAN</option>
+                <option value="MALAYALAM">MALAYALAM</option>
+                <option value="MARATHI">MARATHI</option>
+                <option value="NORWEGIAN">NORWEGIAN</option>
+                <option value="PERSIAN">PERSIAN</option>
+                <option value="POLISH">POLISH</option>
+                <option value="PORTUGUESE">PORTUGUESE</option>
+                <option value="PUNJABI">PUNJABI</option>
+                <option value="ROMANIAN">ROMANIAN</option>
+                <option value="RUSSIAN">RUSSIAN</option>
+                <option value="SPANISH">SPANISH</option>
+                <option value="SWEDISH">SWEDISH</option>
+                <option value="TAMIL">TAMIL</option>
+                <option value="TELUGU">TELUGU</option>
+                <option value="TURKISH">TURKISH</option>
+                <option value="UKRAINIAN">UKRAINIAN</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label class="form-control-label" for="field_subscriptionType">Subscription Type</label>
             <select class="form-control" name="subscriptionType" [(ngModel)]="movieContent.subscriptionType" id="field_subscriptionType" >
                 <option value="PAID">PAID</option>

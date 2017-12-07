@@ -3,12 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Rx';
-import { NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { SubscriptionRequests } from './subscription-requests.model';
 import { SubscriptionRequestsPopupService } from './subscription-requests-popup.service';
 import { SubscriptionRequestsService } from './subscription-requests.service';
+import { User, UserService } from '../../shared';
+import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-subscription-requests-dialog',
@@ -18,6 +20,8 @@ export class SubscriptionRequestsDialogComponent implements OnInit {
 
     subscriptionRequests: SubscriptionRequests;
     isSaving: boolean;
+
+    users: User[];
     requestedDateDp: any;
     approvalDateDp: any;
     startDateDp: any;
@@ -25,14 +29,17 @@ export class SubscriptionRequestsDialogComponent implements OnInit {
 
     constructor(
         public activeModal: NgbActiveModal,
-        private alertService: JhiAlertService,
+        private jhiAlertService: JhiAlertService,
         private subscriptionRequestsService: SubscriptionRequestsService,
+        private userService: UserService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.userService.query()
+            .subscribe((res: ResponseWrapper) => { this.users = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -66,7 +73,11 @@ export class SubscriptionRequestsDialogComponent implements OnInit {
     }
 
     private onError(error: any) {
-        this.alertService.error(error.message, null, null);
+        this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackUserById(index: number, item: User) {
+        return item.id;
     }
 }
 

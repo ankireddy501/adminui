@@ -31,6 +31,8 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.musty.admin.domain.enumeration.Generes;
+import com.musty.admin.domain.enumeration.Language;
 import com.musty.admin.domain.enumeration.SubscriptionType;
 /**
  * Test class for the MovieContentResource REST controller.
@@ -49,6 +51,12 @@ public class MovieContentResourceIntTest {
 
     private static final String DEFAULT_CONTENT_PATH = "AAAAAAAAAA";
     private static final String UPDATED_CONTENT_PATH = "BBBBBBBBBB";
+
+    private static final Generes DEFAULT_GENERES = Generes.ABSURDIST;
+    private static final Generes UPDATED_GENERES = Generes.ACTION;
+
+    private static final Language DEFAULT_LANGUAGE = Language.ARABIC;
+    private static final Language UPDATED_LANGUAGE = Language.BENGALI;
 
     private static final SubscriptionType DEFAULT_SUBSCRIPTION_TYPE = SubscriptionType.PAID;
     private static final SubscriptionType UPDATED_SUBSCRIPTION_TYPE = SubscriptionType.FREE;
@@ -100,6 +108,8 @@ public class MovieContentResourceIntTest {
             .name(DEFAULT_NAME)
             .description(DEFAULT_DESCRIPTION)
             .contentPath(DEFAULT_CONTENT_PATH)
+            .generes(DEFAULT_GENERES)
+            .language(DEFAULT_LANGUAGE)
             .subscriptionType(DEFAULT_SUBSCRIPTION_TYPE)
             .creationTime(DEFAULT_CREATION_TIME)
             .updateDate(DEFAULT_UPDATE_DATE);
@@ -129,6 +139,8 @@ public class MovieContentResourceIntTest {
         assertThat(testMovieContent.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testMovieContent.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
         assertThat(testMovieContent.getContentPath()).isEqualTo(DEFAULT_CONTENT_PATH);
+        assertThat(testMovieContent.getGeneres()).isEqualTo(DEFAULT_GENERES);
+        assertThat(testMovieContent.getLanguage()).isEqualTo(DEFAULT_LANGUAGE);
         assertThat(testMovieContent.getSubscriptionType()).isEqualTo(DEFAULT_SUBSCRIPTION_TYPE);
         assertThat(testMovieContent.getCreationTime()).isEqualTo(DEFAULT_CREATION_TIME);
         assertThat(testMovieContent.getUpdateDate()).isEqualTo(DEFAULT_UPDATE_DATE);
@@ -167,6 +179,8 @@ public class MovieContentResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
             .andExpect(jsonPath("$.[*].contentPath").value(hasItem(DEFAULT_CONTENT_PATH.toString())))
+            .andExpect(jsonPath("$.[*].generes").value(hasItem(DEFAULT_GENERES.toString())))
+            .andExpect(jsonPath("$.[*].language").value(hasItem(DEFAULT_LANGUAGE.toString())))
             .andExpect(jsonPath("$.[*].subscriptionType").value(hasItem(DEFAULT_SUBSCRIPTION_TYPE.toString())))
             .andExpect(jsonPath("$.[*].creationTime").value(hasItem(DEFAULT_CREATION_TIME.toString())))
             .andExpect(jsonPath("$.[*].updateDate").value(hasItem(DEFAULT_UPDATE_DATE.toString())));
@@ -186,6 +200,8 @@ public class MovieContentResourceIntTest {
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
             .andExpect(jsonPath("$.contentPath").value(DEFAULT_CONTENT_PATH.toString()))
+            .andExpect(jsonPath("$.generes").value(DEFAULT_GENERES.toString()))
+            .andExpect(jsonPath("$.language").value(DEFAULT_LANGUAGE.toString()))
             .andExpect(jsonPath("$.subscriptionType").value(DEFAULT_SUBSCRIPTION_TYPE.toString()))
             .andExpect(jsonPath("$.creationTime").value(DEFAULT_CREATION_TIME.toString()))
             .andExpect(jsonPath("$.updateDate").value(DEFAULT_UPDATE_DATE.toString()));
@@ -212,6 +228,8 @@ public class MovieContentResourceIntTest {
             .name(UPDATED_NAME)
             .description(UPDATED_DESCRIPTION)
             .contentPath(UPDATED_CONTENT_PATH)
+            .generes(UPDATED_GENERES)
+            .language(UPDATED_LANGUAGE)
             .subscriptionType(UPDATED_SUBSCRIPTION_TYPE)
             .creationTime(UPDATED_CREATION_TIME)
             .updateDate(UPDATED_UPDATE_DATE);
@@ -228,6 +246,8 @@ public class MovieContentResourceIntTest {
         assertThat(testMovieContent.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testMovieContent.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
         assertThat(testMovieContent.getContentPath()).isEqualTo(UPDATED_CONTENT_PATH);
+        assertThat(testMovieContent.getGeneres()).isEqualTo(UPDATED_GENERES);
+        assertThat(testMovieContent.getLanguage()).isEqualTo(UPDATED_LANGUAGE);
         assertThat(testMovieContent.getSubscriptionType()).isEqualTo(UPDATED_SUBSCRIPTION_TYPE);
         assertThat(testMovieContent.getCreationTime()).isEqualTo(UPDATED_CREATION_TIME);
         assertThat(testMovieContent.getUpdateDate()).isEqualTo(UPDATED_UPDATE_DATE);

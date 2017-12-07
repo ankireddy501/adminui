@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import com.musty.admin.domain.SubscriptionRequests;
 
 import com.musty.admin.repository.SubscriptionRequestsRepository;
+import com.musty.admin.web.rest.errors.BadRequestAlertException;
 import com.musty.admin.web.rest.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -46,7 +47,7 @@ public class SubscriptionRequestsResource {
     public ResponseEntity<SubscriptionRequests> createSubscriptionRequests(@RequestBody SubscriptionRequests subscriptionRequests) throws URISyntaxException {
         log.debug("REST request to save SubscriptionRequests : {}", subscriptionRequests);
         if (subscriptionRequests.getId() != null) {
-            return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new subscriptionRequests cannot already have an ID")).body(null);
+            throw new BadRequestAlertException("A new subscriptionRequests cannot already have an ID", ENTITY_NAME, "idexists");
         }
         SubscriptionRequests result = subscriptionRequestsRepository.save(subscriptionRequests);
         return ResponseEntity.created(new URI("/api/subscription-requests/" + result.getId()))
